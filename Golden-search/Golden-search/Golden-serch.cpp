@@ -13,9 +13,17 @@
 /*      return : Œ‹‰Ê                     */
 /******************************************/
 
-double gold(double a, double b, double eps, double *val, int *ind, int max, double(*fun)(double))
+double gold(double *val, int *ind, double(*fun)(double))
 {
-	double f1, f2, fa, fb, tau, x = 0.0, x1, x2;
+	double a, b, eps;
+	int max;
+
+	a = 0.0;
+	b = 10.0;
+	eps = 1.0e-3;
+	max = 100;
+
+	double f1, f2, fa, fb, tau, ƒ¿ = 0.0, x1, x2;
 	int count;
 
 	tau = (sqrt(5.0) - 1.0) / 2.0;
@@ -31,7 +39,7 @@ double gold(double a, double b, double eps, double *val, int *ind, int max, doub
 		if (f2 > f1) {
 			if (fabs(b - a) < eps && fabs(b - a) < eps*fabs(b)) {
 				*ind = 0;
-				x = x1;
+				ƒ¿ = x1;
 				*val = f1;
 			}
 			else {
@@ -45,7 +53,7 @@ double gold(double a, double b, double eps, double *val, int *ind, int max, doub
 		else {
 			if (fabs(b - a) < eps && fabs(b - a) < eps*fabs(b)) {
 				*ind = 0;
-				x = x2;
+				ƒ¿ = x2;
 				*val = f2;
 				f1 = f2;
 			}
@@ -68,10 +76,10 @@ double gold(double a, double b, double eps, double *val, int *ind, int max, doub
 			fa = fb;
 		}
 		if (fa < f1) {
-			x = a;
+			ƒ¿ = a;
 			*val = fa;
 		}
 	}
 
-	return x;
+	return ƒ¿;
 }

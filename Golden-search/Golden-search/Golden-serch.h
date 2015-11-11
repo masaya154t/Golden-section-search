@@ -1,3 +1,3 @@
 #include <math.h>
 //‰©‹à•ªŠ„–@//
-double gold(double, double, double, double *, int *, int, double(*)(double));
+double gold(double *val, int *ind, double(*fun)(double));
